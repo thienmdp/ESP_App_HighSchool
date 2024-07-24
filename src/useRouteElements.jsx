@@ -5,6 +5,7 @@ import Register from './pages/Register/Register'
 import MainLayout from './layouts/MainLayout/MainLayout'
 import Landing from './pages/Landing/Landing'
 import Dashboard from './pages/Dashboard'
+import DashboardLayout from './layouts/DashboardLayout'
 
 function ProtectedRoute() {
   // const { isAuthenticated } = useContext(AppContext);
@@ -58,9 +59,9 @@ export default function useRouteElements() {
         {
           path: path.dashboard,
           element: (
-            <MainLayout>
+            <DashboardLayout>
               <Dashboard />
-            </MainLayout>
+            </DashboardLayout>
           )
         }
       ]

@@ -1,63 +1,69 @@
 import { Link } from 'react-router-dom'
 import path from '../../constants/path'
+import styled from 'styled-components'
+import Logo from '../../../public/assets/picture/logo.png'
 
+const Styled = styled.div`
+  a {
+    text-decoration: none;
+  }
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    width: 100%;
+  }
+  .logo {
+    font-size: 32px;
+    color: #fff;
+    font-weight: 700;
+  }
+  .navbar a {
+    position: relative;
+    font-size: 17px;
+    font-weight: 600;
+    margin-left: 30px;
+    color: #ffffff;
+  }
+  .navbar a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    top: 100%;
+    left: 0;
+    transition: 0.2s;
+  }
+  .navbar a:hover::before {
+    width: 100%;
+  }
+
+  .header .logo img {
+    width: 185px;
+    height: auto;
+  }
+`
 export default function Header() {
   return (
-    <nav className='bg-white border-gray-200 '>
-      <div className='flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto'>
-        <a href={path.landing} className='flex items-center space-x-3 rtl:space-x-reverse'>
-          <img src='../../../public/assets/picture/logo.png' className='h-12' alt='Flowbite Logo' />
+    <Styled>
+      <header className='bg-green-600/50 header'>
+        <a href='/' className='px-4 bg-white rounded-lg logo'>
+          <img src={Logo} alt='' />
         </a>
-        <div className='flex items-center space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse'>
-          <Link to={path.register} className='block px-3 mr-4 text-teal-700 rounded md:p-0 '>
-            Đăng ký
-          </Link>
-          <Link
-            to={path.login}
-            type='button'
-            className='px-4 py-2 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 '
-          >
-            Đăng nhập
-          </Link>
-        </div>
-        <div className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1' id='navbar-cta'>
-          <ul className='flex flex-col p-4 mt-4 font-medium border border-gray-100 rounded-lg md:p-0 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white '>
-            <li>
-              <a
-                href={path.landing}
-                className='block px-3 py-2 text-white bg-teal-700 rounded md:p-0 md:bg-transparent md:text-teal-700 '
-                aria-current='page'
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href={path.landing}
-                className='block px-3 py-2 text-gray-900 rounded md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-700 '
-              >
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href={path.landing}
-                className='block px-3 py-2 text-gray-900 rounded md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-700 '
-              >
-                Services
-              </a>
-            </li>
-            <li>
-              <a
-                href={path.landing}
-                className='block px-3 py-2 text-gray-900 rounded md:p-0 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-teal-700 '
-              >
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+
+        <nav className='navbar'>
+          <Link to={path.landing}>Trang chính</Link>
+          <Link to={path.landing}>Bài kiểm tra</Link>
+          <Link to={path.register}>Đăng ký</Link>
+          <Link to={path.login}>Đăng nhập</Link>
+        </nav>
+      </header>
+    </Styled>
   )
 }
