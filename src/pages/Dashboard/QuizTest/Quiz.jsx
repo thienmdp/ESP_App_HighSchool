@@ -66,7 +66,7 @@ export default function Quiz({ questions }) {
             <p className='text-xl '>{question}</p>
             {getAnswerUI(type)}
             <button
-              className='flex items-center justify-center min-w-[150px] p-2 text-white transition-colors duration-300 rounded-md  focus:outline-none bg-green-500 hover:bg-green-500/90'
+              className={`${answerIdx === null && 'cursor-not-allowed !bg-default/50'} flex items-center justify-center min-w-[150px] p-2 text-white transition-colors duration-300 rounded-md  focus:outline-none bg-green-500 hover:bg-green-500/90`}
               onClick={onClickNext}
               disabled={answerIdx === null}
             >

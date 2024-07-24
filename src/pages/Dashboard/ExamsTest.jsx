@@ -5,7 +5,7 @@ import Quiz from './QuizTest/Quiz'
 export default function ExamsTest() {
   const [start, setStart] = useState(false)
   return (
-    <div className='p-8 mx-auto '>
+    <div className='max-w-6xl p-8 mx-auto'>
       <p className='text-5xl font-semibold text-center'>BÀI TEST TRẦM CẢM DASS 21</p>
       {!start && (
         <div className='grid px-8 mt-8 text-lg '>
