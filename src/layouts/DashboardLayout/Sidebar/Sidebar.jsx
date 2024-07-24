@@ -11,24 +11,18 @@ import path from '../../../constants/path'
 import { MdDashboard } from 'react-icons/md'
 
 const Sidebar = () => {
-  const [isActive, setIsActive] = useState(false) // Use state to manage active state
+  const [isActive, setIsActive] = useState(false)
 
   const toggleSidebar = () => {
-    setIsActive(!isActive) // Toggle active state on click
+    setIsActive(!isActive)
   }
 
   return (
-    <div className={`Sidebar h-[100vh] ${isActive ? 'active' : ''}`}>
+    <div className={`Sidebar bg-green-500 h-[100vh] ${isActive ? 'active' : ''}`}>
       <div className='Logo-menu'>
-        <h2 className='Logo'>LNA SYSTEM</h2>
+        <h2 className='text-3xl font-bold text-white Logo'>LNA SYSTEM</h2>
       </div>
       <ul className='list'>
-        <li className='list-item'>
-          <Link to='/' className='flex items-center justify-start w-full'>
-            <FaHome className='mr-4 min-w-max' />
-            <span className='link-name'>Trang chủ</span>
-          </Link>
-        </li>
         <li className='list-item'>
           <Link to={path.dashboard} className='flex items-center justify-start w-full'>
             <MdDashboard className='mr-4 min-w-max' />
@@ -42,7 +36,7 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className='list-item'>
-          <Link to='#/' className='flex items-center justify-start w-full'>
+          <Link to={path.examsTest} className='flex items-center justify-start w-full'>
             <RiMentalHealthLine className='mr-4 min-w-max' />
             <span className='link-name'>Bài tập hỗ trợ</span>
           </Link>
@@ -63,6 +57,12 @@ const Sidebar = () => {
           <Link to='#/' className='flex items-center justify-start w-full'>
             <FaRegCalendarAlt className='mr-4 min-w-max' />
             <span className='link-name'>Đặt lịch hẹn</span>
+          </Link>
+        </li>
+        <li className='list-item'>
+          <Link to='/' className='flex items-center justify-start w-full'>
+            <FaHome className='mr-4 min-w-max' />
+            <span className='link-name'>Trang chủ</span>
           </Link>
         </li>
         <li className='cursor-pointer list-item ' onClick={toggleSidebar}>

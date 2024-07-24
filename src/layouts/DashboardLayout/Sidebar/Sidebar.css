@@ -1,12 +1,11 @@
 .Sidebar {
   padding-left: 20px;
-  width: 80px;
-  background: rgb(53, 83, 182);
+  width: 60px;
   padding: 6px 14px;
   transition: 0.5s;
 }
 .Sidebar.active {
-  width: 260px;
+  width: 230px;
 }
 
 .Sidebar .Logo-menu {

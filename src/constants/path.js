@@ -4,7 +4,7 @@ const path = {
   logout: '/logout',
   landing: '/',
   dashboard: '/dashboard',
-  messenger: '/dashboard/messager',
+  messenger: '/dashboard/messenger',
   examsTest: '/dashboard/examsTest',
 }
 export default path
