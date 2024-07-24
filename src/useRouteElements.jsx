@@ -6,6 +6,8 @@ import MainLayout from './layouts/MainLayout/MainLayout'
 import Landing from './pages/Landing/Landing'
 import Dashboard from './pages/Dashboard'
 import DashboardLayout from './layouts/DashboardLayout'
+import Messenger from './pages/Dashboard/Messenger'
+import ExamsTest from './pages/Dashboard/ExamsTest'
 
 function ProtectedRoute() {
   // const { isAuthenticated } = useContext(AppContext);
@@ -61,6 +63,22 @@ export default function useRouteElements() {
           element: (
             <DashboardLayout>
               <Dashboard />
+            </DashboardLayout>
+          )
+        },
+        {
+          path: path.messenger,
+          element: (
+            <DashboardLayout>
+              <Messenger />
+            </DashboardLayout>
+          )
+        },
+        {
+          path: path.examsTest,
+          element: (
+            <DashboardLayout>
+              <ExamsTest />
             </DashboardLayout>
           )
         }

@@ -1,0 +1,85 @@
+.Sidebar {
+  padding-left: 20px;
+  width: 80px;
+  background: rgb(53, 83, 182);
+  padding: 6px 14px;
+  transition: 0.5s;
+}
+.Sidebar.active {
+  width: 260px;
+}
+
+.Sidebar .Logo-menu {
+  text-align: center;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.Sidebar .Logo-menu .Logo {
+  font-size: 36px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.2s;
+  opacity: 0;
+}
+.Sidebar.active .Logo-menu .Logo {
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+
+.Sidebar .Logo-menu .toggle-btn {
+  position: absolute;
+  padding-top: 80vw;
+  margin-left: 180px;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-left: 0;
+}
+.Sidebar.active .Logo-menu .toggle-btn {
+  margin-left: 180px;
+}
+.Sidebar .list {
+  margin-top: 10px;
+}
+.list .list-item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 5px 0;
+  line-height: 50px;
+  padding-top: 30px;
+}
+.list .list-item a {
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: 0.5s;
+  white-space: nowrap;
+}
+
+.list .list-item a i {
+  min-width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+.Sidebar .link-name {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+.Sidebar.active .link-name {
+  opacity: 1;
+  pointer-events: auto;
+}

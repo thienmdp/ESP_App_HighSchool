@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import path from '../../constants/path'
 
 export default function Login() {
+  const navigate = useNavigate()
   return (
     <div
       className='relative bg-center bg-no-repeat bg-cover p-14'
@@ -65,6 +67,7 @@ export default function Login() {
               <div>
                 <button
                   type='submit'
+                  onClick={() => navigate('/dashboard')}
                   className='flex justify-center w-full p-3 font-semibold tracking-wide text-gray-100 transition duration-500 ease-in bg-green-400 rounded-full shadow-lg cursor-pointer hover:bg-green-500'
                 >
                   Sign in
