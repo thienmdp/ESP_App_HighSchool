@@ -18,7 +18,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className={`Sidebar bg-green-500 h-[100vh] ${isActive ? 'active' : ''}`}>
+    <div className={`Sidebar bg-green-500 min-h-screen h-auto  ${isActive ? 'active' : ''}`}>
       <div className='Logo-menu'>
         <h2 className='text-3xl font-bold text-white Logo'>LNA SYSTEM</h2>
       </div>
