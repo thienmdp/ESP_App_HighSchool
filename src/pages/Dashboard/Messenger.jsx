@@ -93,8 +93,8 @@ const Styled = styled.div`
 export default function Messenger() {
   return (
     <Styled>
-      <div className='w-full h-full mx-auto '>
-        <div className='container p-8 bg-green-400 !w-full h-full'>
+      <div className='w-full h-full mx-auto  '>
+        <div className='container p-8 bg-green-400 !w-full h-full '>
           <SidebarMessenger />
           <ChatMessenger />
         </div>

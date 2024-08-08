@@ -38,23 +38,23 @@ const Sidebar = () => {
         <li className='list-item'>
           <Link to={path.examsTest} className='flex items-center justify-start w-full'>
             <RiMentalHealthLine className='mr-4 min-w-max' />
-            <span className='link-name'>Bài tập hỗ trợ</span>
-          </Link>
-        </li>
-        <li className='list-item'>
-          <Link to='#/' className='flex items-center justify-start w-full'>
-            <FaRegNoteSticky className='mr-4 min-w-max' />
-            <span className='link-name'> Bài kiểm tra</span>
-          </Link>
-        </li>
-        <li className='list-item'>
-          <Link to='#/' className='flex items-center justify-start w-full'>
-            <GiHealing className='mr-4 min-w-max' />
             <span className='link-name'>Đánh giá tâm lí</span>
           </Link>
         </li>
         <li className='list-item'>
           <Link to='#/' className='flex items-center justify-start w-full'>
+            <FaRegNoteSticky className='mr-4 min-w-max' />
+            <span className='link-name text-lg'>Tổng quan sức khoẻ</span>
+          </Link>
+        </li>
+        <li className='list-item'>
+          <Link to='#/' className='flex items-center justify-start w-full'>
+            <GiHealing className='mr-4 min-w-max' />
+            <span className='link-name'>Bài tập hỗ trợ</span>
+          </Link>
+        </li>
+        <li className='list-item'>
+          <Link to={path.booking} className='flex items-center justify-start w-full'>
             <FaRegCalendarAlt className='mr-4 min-w-max' />
             <span className='link-name'>Đặt lịch hẹn</span>
           </Link>

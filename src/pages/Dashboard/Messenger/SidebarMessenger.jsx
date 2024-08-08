@@ -4,7 +4,7 @@ import ChatsMessenger from './ChatsMessenger'
 
 export default function SidebarMessenger() {
   return (
-    <div className='SidebarMessenger '>
+    <div className='SidebarMessenger  '>
       <NavbarMessenger />
       <SearchMessenger />
       <ChatsMessenger />
