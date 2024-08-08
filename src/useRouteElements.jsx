@@ -12,28 +12,45 @@ import Booking from './pages/Dashboard/Booking'
 import Apoinment from './pages/Dashboard/Booking/Apoinment'
 import Makeapoinment from './pages/Dashboard/Booking/Makeapoinment'
 import Historyapoinment from './pages/Dashboard/Booking/Historyapoinment'
-import firebase from './firebaseConfig'
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebaseConfig'
+import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
 
-function ProtectedRoute() {
-  const [user, loading] = useAuthState(firebase.auth());
 
-  if (loading) {
-    return <div>Loading...</div>; // Or any loading indicator
-  }
+function useAuth() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  return user ? <Outlet /> : <Navigate to="/login" />;
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+
+  }, []);
+
+  return { user, loading };
 }
 
-function RejectedRoute() {
-  const [user, loading] = useAuthState(firebase.auth());
+function ProtectedRoute() {
+  const { user, loading } = useAuth();
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  return !user ? <Outlet /> : <Navigate to="/" />;
+  return user ? <Outlet /> : <Navigate to={path.login} />;
+}
+
+function RejectedRoute() {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return !user ? <Outlet /> : <Navigate to={path.dashboard} />;
 }
 export default function useRouteElements() {
   return useRoutes([

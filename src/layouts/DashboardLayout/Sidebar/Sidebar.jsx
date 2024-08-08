@@ -6,19 +6,31 @@ import { FaHome, FaRegCalendarAlt } from 'react-icons/fa'
 import { FaRegNoteSticky } from 'react-icons/fa6'
 import { GiHealing } from 'react-icons/gi'
 import { HiOutlineBars3 } from 'react-icons/hi2'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import path from '../../../constants/path'
 import { MdDashboard } from 'react-icons/md'
+import { signOut } from 'firebase/auth';
+import { auth } from '../../../firebaseConfig';
 
 const Sidebar = () => {
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
-    setIsActive(!isActive)
-  }
+    setIsActive(!isActive);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log('log out')
+    } catch (error) {
+      console.log('Error logging out:', error);
+    }
+  };
 
   return (
-    <div className={`Sidebar bg-green-500 min-h-screen h-auto  ${isActive ? 'active' : ''}`}>
+    <div className={`Sidebar bg-green-500 min-h-screen h-auto ${isActive ? 'active' : ''}`}>
       <div className='Logo-menu'>
         <h2 className='text-3xl font-bold text-white Logo'>LNA SYSTEM</h2>
       </div>
@@ -60,10 +72,9 @@ const Sidebar = () => {
           </Link>
         </li>
         <li className='list-item'>
-          <Link to='/' className='flex items-center justify-start w-full'>
-            <FaHome className='mr-4 min-w-max' />
-            <span className='link-name'>Trang chủ</span>
-          </Link>
+          <button onClick={handleLogout} className='flex items-center justify-start w-full'>
+            <span className='link-name'>Đăng Xuất</span>
+          </button>
         </li>
         <li className='cursor-pointer list-item ' onClick={toggleSidebar}>
           <i>
@@ -72,7 +83,7 @@ const Sidebar = () => {
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
