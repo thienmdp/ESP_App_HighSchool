@@ -8,9 +8,9 @@ export default function TitleBooking() {
                   <h1 className='text-3xl	font-bold	'> Đặt lịch hẹn</h1>
 
                   <div className='space-x-8 text-lg'>
-                        <Link >Các lịch hẹn</Link>
+                        <Link to={path.meeting} >Các lịch hẹn</Link>
                         <Link to={path.booking}>Đặt Lịch hẹn</Link>
-                        <Link>Lịch sử Hẹn </Link>
+                        <Link to={path.historyapoinment}>Lịch sử Hẹn </Link>
                   </div>
             </header>
       )

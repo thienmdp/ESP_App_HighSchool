@@ -68,6 +68,7 @@ export default function Login() {
                   onChange={(e) => setPass(e.target.value)}
                   required
                 />
+
               </div>
               <div className='flex items-center justify-between'>
                 <div className='flex items-center'>
@@ -77,9 +78,11 @@ export default function Login() {
                     type='checkbox'
                     className='w-4 h-4 bg-blue-500 border-gray-300 rounded focus:ring-blue-400'
                   />
-                  <label htmlFor='remember_me' className='block ml-2 text-sm text-gray-800'>
-                    Nhớ mật khẩu
-                  </label>
+                  <div className='dis'>
+                    <label htmlFor='remember_me' className='block ml-2 text-sm text-gray-800'>
+                      Nhớ mật khẩu
+                    </label>
+                  </div>
                 </div>
                 <div className='text-sm'>
                   <a href={path.register} className='text-green-400 hover:text-green-500'>

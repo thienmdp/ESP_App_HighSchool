@@ -1,72 +1,80 @@
-import { useState } from 'react'
-import Result from './Result'
+import { useState, useEffect } from 'react';
+import Result from './Result';
 
-const initialResult = { score: 0, correctAnswers: 0, wrongAnswers: 0 }
 
-export default function Quiz({ questions }) {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answerIdx, setAnswerIdx] = useState(null)
-  const [answer, setAnswer] = useState(false)
-  const [result, setResult] = useState(initialResult)
-  const [showResult, setShowResult] = useState(false)
+const initialResult = { score: 0, stressLevel: 0, anxietyLevel: 0, depressionLevel: 0 };
 
-  const { question, choices, correctAnswer, type } = questions[currentQuestion]
+export default function Quiz({ questions, navigation }) {  // Thêm `navigation` từ props
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answerIdx, setAnswerIdx] = useState(null);
+  const [result, setResult] = useState(initialResult);
+  const [showResult, setShowResult] = useState(false);
 
-  const onAnswerClick = (answer, index) => {
-    setAnswerIdx(index)
-    setAnswer(answer === correctAnswer)
-  }
+
+  const { question, choices, class: questionClass } = questions[currentQuestion];
+
+  const onAnswerClick = (index) => {
+    setAnswerIdx(index);
+  };
+
 
   const onClickNext = () => {
-    setAnswerIdx(null)
+    setAnswerIdx(null);
+
     setResult((prev) => ({
       ...prev,
-      score: answer ? prev.score + 5 : prev.score,
-      correctAnswers: answer ? prev.correctAnswers + 1 : prev.correctAnswers,
-      wrongAnswers: answer ? prev.wrongAnswers : prev.wrongAnswers + 1
-    }))
-    setCurrentQuestion((prev) => (currentQuestion !== questions.length - 1 ? prev + 1 : 0))
-    if (currentQuestion === questions.length - 1) setShowResult(true)
-  }
+      score: prev.score + answerIdx,
+      stressLevel: questionClass === 'S' ? prev.stressLevel + answerIdx : prev.stressLevel,
+      anxietyLevel: questionClass === 'A' ? prev.anxietyLevel + answerIdx : prev.anxietyLevel,
+      depressionLevel: questionClass === 'D' ? prev.depressionLevel + answerIdx : prev.depressionLevel,
+    }));
+
+    if (currentQuestion !== questions.length - 1) {
+      setCurrentQuestion((prev) => prev + 1);
+    } else {
+      setShowResult(true);
+    }
+  };
 
   const onTryAgain = () => {
-    setResult(initialResult)
-    setShowResult(false)
-  }
+    setResult(initialResult);
+    setShowResult(false);
+    setCurrentQuestion(0); // Đặt lại câu hỏi hiện tại về câu đầu tiên
+  };
 
   const getAnswerUI = () => (
-    <ul className='mt-5 '>
+    <ul className="mt-5">
       {choices?.map((answer, index) => (
         <li
           key={answer}
-          onClick={() => onAnswerClick(answer, index)}
-          className={`border border-default rounded-lg p-3 mt-4 cursor-pointer ${
-            answerIdx === index
-              ? 'bg-green-500/85 shadow-green-400/50 border-green-400 shadow-sm font-semibold text-white'
-              : ''
-          }`}
+          onClick={() => onAnswerClick(index)}
+          className={`border border-default rounded-lg p-3 mt-4 cursor-pointer ${answerIdx === index
+            ? 'bg-green-500/85 shadow-green-400/50 border-green-400 shadow-sm font-semibold text-white'
+            : ''
+            }`}
         >
           {answer}
         </li>
       ))}
     </ul>
-  )
+  );
 
   return (
     <>
       {showResult ? (
         <Result totalQuestion={questions.length} result={result} onTryAgain={onTryAgain} />
       ) : (
-        <div className='p-8'>
+        <div className="p-8">
           <div>
-            <span className='text-4xl font-semibold text-green-500'>{currentQuestion + 1}</span>
-            <span className='text-lg text-default'>/{questions.length}</span>
+            <span className="text-4xl font-semibold text-green-500">{currentQuestion + 1}</span>
+            <span className="text-lg text-default">/{questions.length}</span>
           </div>
-          <div className='grid gap-4'>
-            <p className='text-xl '>{question}</p>
-            {getAnswerUI(type)}
+          <div className="grid gap-4">
+            <p className="text-xl">{question}</p>
+            {getAnswerUI()}
             <button
-              className={`${answerIdx === null && 'cursor-not-allowed !bg-default/50'} flex items-center justify-center min-w-[150px] p-2 text-white transition-colors duration-300 rounded-md  focus:outline-none bg-green-500 hover:bg-green-500/90`}
+              className={`${answerIdx === null && 'cursor-not-allowed !bg-default/50'
+                } flex items-center justify-center min-w-[150px] p-2 text-white transition-colors duration-300 rounded-md  focus:outline-none bg-green-500 hover:bg-green-500/90`}
               onClick={onClickNext}
               disabled={answerIdx === null}
             >
@@ -76,5 +84,5 @@ export default function Quiz({ questions }) {
         </div>
       )}
     </>
-  )
+  );
 }

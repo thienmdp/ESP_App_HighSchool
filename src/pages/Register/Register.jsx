@@ -74,13 +74,13 @@ export default function Register() {
 
         // Success, handle account creation
         console.log('Account created');
-        
+
         // Get the user's UID after successful account creation
         const userUid = userCredential.user.uid;
-  
+
         // Determine the path based on the role
         const profilePath = role === 0 ? 'User' : 'Doctor';
-  
+
         // Create the userData object based on the role
         const userData = {
           Id: userUid,
@@ -90,7 +90,7 @@ export default function Register() {
           password: password,
           role: role,
         };
-  
+
         // Save user data to Firestore
         await setDoc(doc(db, profilePath, userUid), userData);
       }
@@ -130,7 +130,7 @@ export default function Register() {
           </div>
         </div>
         <div className='z-10 flex self-center justify-center'>
-          <div className='p-12 mx-auto bg-white rounded-2xl w-100 '>
+          <div className='p-12 mx-auto bg-white rounded-2xl w-100 mt-20 '>
             <div className='mb-4'>
               <h3 className='text-2xl font-semibold text-gray-800'>Đăng kí</h3>
               <p className='text-gray-500'>Đăng kí tài khoảng</p>
@@ -147,7 +147,7 @@ export default function Register() {
                 />
                 {errors.name && (<h2 className='text-x font-thin text-red-800'>{errors.name}</h2>)}
               </div>
-              
+
               <div className='space-y-2'>
                 <label className='text-sm font-medium tracking-wide text-gray-700'>Email</label>
                 <input
@@ -190,10 +190,37 @@ export default function Register() {
                   value={reenter}
                   onChange={(e) => setReenter(e.target.value)}
                 />
+                <div className='flex items-center'>
+                  <input
+                    id='remember_me'
+                    name='remember_me'
+                    type='checkbox'
+                    className='w-4 h-4 bg-blue-500 border-gray-300 rounded focus:ring-blue-400'
+                  />
+                  <div className='dis'>
+                    <label htmlFor='remember_me' className='block ml-2 text-sm text-gray-800'>
+                      Bấm vào nếu bạn là bác sĩ                    </label>
+                  </div>
+                </div>
+                <div className='flex items-center'>
+                  <input
+                    id='remember_me'
+                    name='remember_me'
+                    type='checkbox'
+                    className='w-4 h-4 bg-blue-500 border-gray-300 rounded focus:ring-blue-400'
+                  />
+                  <div className='dis'>
+                    <label htmlFor='remember_me' className='block ml-2 text-sm text-gray-800'>
+                      Bấm vào nếu bạn là tình nguyện viên                    </label>
+                  </div>
+                </div>
+
                 {errors.reenter && (<h2 className='text-x font-thin text-red-800'>{errors.reenter}</h2>)}
               </div>
               <div className='flex items-center justify-between'>
+
                 <div className='text-sm'>
+
                   <Link to={path.login} className='text-green-400 hover:text-green-500'>
                     Đã có tài khoản ?
                   </Link>

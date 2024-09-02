@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import path from '../../constants/path'
 import styled from 'styled-components'
-import Logo from '../../../public/assets/picture/logo.png'
+import Logo from '../../../public/assets/picture/Logo-LnA.png'
 
 const Styled = styled.div`
   a {
@@ -52,14 +52,14 @@ const Styled = styled.div`
 export default function Header() {
   return (
     <Styled>
-      <header className='bg-green-600/50 header'>
+      <header className='bg-green-900/50 header'>
         <a href='/' className='px-4 bg-white rounded-lg logo'>
           <img src={Logo} alt='' />
         </a>
 
         <nav className='navbar'>
           <Link to={path.landing}>Trang chính</Link>
-          <Link to={path.landing}>Bài kiểm tra</Link>
+          <Link to={path.examsTest}>Bài kiểm tra</Link>
           <Link to={path.register}>Đăng ký</Link>
           <Link to={path.login}>Đăng nhập</Link>
         </nav>

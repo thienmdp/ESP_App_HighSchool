@@ -30,7 +30,7 @@ const Styled = styled.div`
 export default function Hero() {
   return (
     <Styled>
-      <div className='Hero'>
+      <div className='Hero bg-green-900'>
         <div className='Hero-text'>
           <h1>LNA System </h1>
           <p>- Hệ thống sơ cứu và chữa lành cho học sinh mắc chướng ngại tâm lý-</p>

@@ -15,8 +15,10 @@ import Historyapoinment from './pages/Dashboard/Booking/Historyapoinment'
 import { auth } from './firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect, useState } from 'react'
-
-
+import Profile from './pages/Dashboard/Profile'
+import Information from './pages/Dashboard/Information'
+import Heathoveral from './pages/Dashboard/Heathoveral'
+import Meeting from './pages/Dashboard/Booking/Meeting'
 function useAuth() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -40,7 +42,7 @@ function ProtectedRoute() {
     return <div>Loading...</div>;
   }
 
-  return user ? <Outlet /> : <Navigate to={path.login} />;
+  return user ? <Outlet /> : <Navigate to={path.landing} />;
 }
 
 function RejectedRoute() {
@@ -73,17 +75,16 @@ export default function useRouteElements() {
               <Register />
             </MainLayout>
           )
-        }
+        },
+        {
+          path: path.landing,
+          element: (
+            <MainLayout>
+              <Landing />
+            </MainLayout>
+          )
+        },
       ]
-    },
-    {
-      path: path.landing,
-      index: true,
-      element: (
-        <MainLayout>
-          <Landing />
-        </MainLayout>
-      )
     },
     {
       path: '',
@@ -91,6 +92,7 @@ export default function useRouteElements() {
       children: [
         {
           path: path.dashboard,
+          index: true,
           element: (
             <DashboardLayout>
               <Dashboard />
@@ -123,14 +125,45 @@ export default function useRouteElements() {
           )
         },
 
-
-
+        {
+          path: path.profile,
+          element: (
+            <DashboardLayout>
+              <Profile />
+            </DashboardLayout>
+          )
+        },
 
         {
           path: path.makeapoinment,
           element: (
             <DashboardLayout>
               <Makeapoinment />
+            </DashboardLayout>
+          )
+        },
+        {
+          path: path.meeting,
+          element: (
+            <DashboardLayout>
+              <Meeting />
+            </DashboardLayout>
+          )
+        },
+        {
+          path: path.info,
+          element: (
+            <DashboardLayout>
+              <Information />
+            </DashboardLayout>
+          )
+        },
+
+        {
+          path: path.heathoveral,
+          element: (
+            <DashboardLayout>
+              <Heathoveral />
             </DashboardLayout>
           )
         },

@@ -9,8 +9,10 @@ const path = {
   booking: '/dashboard/Booking',
   apoinment: '/dashboard/Booking/Apoinment',
   makeapoinment: '/dashboard/Booking/Makeapoinment',
-  historyapoinment: '/dashboard/Booking/Historyapoinment'
-
-
+  historyapoinment: '/dashboard/Booking/Historyapoinment',
+  profile: '/dashboard/profile',
+  info: '/dashboard/Booking/Information',
+  heathoveral: '/dasboard/Booking/heathoveral',
+  meeting: '/dashboard/Booking/meeting'
 }
 export default path

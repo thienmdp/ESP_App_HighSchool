@@ -3,13 +3,14 @@ export const QuizData = [
     "id": 0,
     "question": "Tôi thấy khó mà thoải mái được",
     "choices": [
-      "Không đúng với tôi chút nào cả",
-      "Đúng với tôi phần, hoặc thỉnh thoảng mới đúng",
-      "Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng",
-      "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+      "Không đúng với tôi chút nào cả",//+0 điểm
+      "Đúng với tôi phần, hoặc thỉnh thoảng mới đúng",//+1
+      "Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng",//+2
+      "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng",//+3
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+
+    "class": "S"
   },
   {
     "id": 1,
@@ -21,7 +22,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Không đúng với tôi chút nào cả"
+    "class": "A"
+
   },
   {
     "id": 2,
@@ -30,10 +32,12 @@ export const QuizData = [
       "Không đúng với tôi chút nào cả",
       "Đúng với tôi phần, hoặc thỉnh thoảng mới đúng",
       "Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng",
-      "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+      "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng",
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "D"
+
+
   },
   {
     "id": 3,
@@ -45,7 +49,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "A"
+
   },
   {
     "id": 4,
@@ -57,7 +62,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "D"
+
   },
   {
     "id": 5,
@@ -69,7 +75,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "S"
+
   },
   {
     "id": 6,
@@ -81,7 +88,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "A"
+
   },
   {
     "id": 7,
@@ -93,7 +101,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "S"
+
   },
   {
     "id": 8,
@@ -102,10 +111,13 @@ export const QuizData = [
       "Không đúng với tôi chút nào cả",
       "Đúng với tôi phần, hoặc thỉnh thoảng mới đúng",
       "Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng",
-      "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+      "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng",
+
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "A"
+
+
   },
   {
     "id": 9,
@@ -117,7 +129,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "D"
+
   },
   {
     "id": 10,
@@ -129,7 +142,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "S"
+
   },
   {
     "id": 11,
@@ -141,7 +155,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "S"
+
   },
   {
     "id": 12,
@@ -153,7 +168,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "D"
+
   },
   {
     "id": 13,
@@ -163,9 +179,11 @@ export const QuizData = [
       "Đúng với tôi phần, hoặc thỉnh thoảng mới đúng",
       "Đúng với tôi phần nhiều, hoặc phần lớn thời gian là đúng",
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "S"
+
   },
   {
     "id": 14,
@@ -177,7 +195,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "A"
+
   },
   {
     "id": 15,
@@ -189,7 +208,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "D"
+
   },
   {
     "id": 16,
@@ -201,7 +221,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "D"
+
   },
   {
     "id": 17,
@@ -213,7 +234,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "S"
+
   },
   {
     "id": 18,
@@ -225,7 +247,8 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "A"
+
   },
   {
     "id": 19,
@@ -237,7 +260,9 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "A"
+
+
   },
   {
     "id": 20,
@@ -249,6 +274,7 @@ export const QuizData = [
       "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
     ],
     "type": "MCQs",
-    "correctAnswer": "Hoàn toàn đúng với tôi, hoặc phần lớn thời gian là đúng"
+    "class": "D"
+
   }
 ];

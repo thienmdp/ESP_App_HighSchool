@@ -57,7 +57,7 @@ const Styled = styled.div`
 export default function About() {
   return (
     <Styled>
-      <div className='Title'>
+      <div className='Title bg-green-900'>
         <p>LNA-SYSTEM</p>
         <h2>-Về Chúng tôi-</h2>
       </div>
