@@ -71,35 +71,36 @@ const Sidebar = () => {
 
       <ul className='list'>
         <li className='list-item'>
-          <Link to={path.dashboard} className='flex items-center justify-start w-full'>
-            <MdDashboard className='mr-4 min-w-max' />
-            <span className='link-name'>Sức khoẻ</span>
-          </Link>
-        </li>
-        {userStatus === 'User' && (<li className='list-item'>
           <Link to={path.heathoveral} className='flex items-center justify-start w-full'>
             <FaRegNoteSticky className='mr-4 min-w-max' />
             <span className='link-name text-lg'>Tổng quan sức khoẻ</span>
           </Link>
+        </li>
+      {userStatus === 'Doctor' && (<li className='list-item'>
+          <Link to={path.dashboard} className='flex items-center justify-start w-full'>
+            <MdDashboard className='mr-4 min-w-max' />
+            <span className='link-name'>Sức khoẻ</span>
+          </Link>
         </li>)}
+        
         {/* <li className='list-item'>
           <Link to={path.messenger} className='flex items-center justify-start w-full'>
             <FaRegMessage className='mr-4 min-w-max' />
             <span className='link-name'> Trò Chuyện</span>
           </Link>
         </li> */}
-        <li className='list-item'>
+        {userStatus === 'User' && ( <li className='list-item'>
           <Link to={path.examsTest} className='flex items-center justify-start w-full'>
             <RiMentalHealthLine className='mr-4 min-w-max' />
             <span className='link-name'>Đánh giá tâm lí</span>
           </Link>
-        </li>
-        <li className='list-item'>
+        </li>)}
+        {userStatus === 'User' && ( <li className='list-item'>
           <Link to={path.booking} className='flex items-center justify-start w-full'>
             <FaRegCalendarAlt className='mr-4 min-w-max' />
             <span className='link-name'>Đặt lịch hẹn</span>
           </Link>
-        </li>
+        </li>)}
         <li className='list-item'>
           <Link to={path.profile} className='flex items-center justify-start w-full'>
             <IoIosSettings className='mr-4 min-w-max' />
