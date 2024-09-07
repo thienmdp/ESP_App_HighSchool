@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import backgroundImage from '/public/assets/picture/background4.jpg'
 
 const Styled = styled.div`
   .Hero {
     width: 100vw;
     min-height: 70vh;
-    background: url('/public/assets/picture/background4.jpg') no-repeat center fixed;
+    background: url(${backgroundImage}) no-repeat center fixed;
     background-size: cover;
     justify-content: center;
     display: flex;

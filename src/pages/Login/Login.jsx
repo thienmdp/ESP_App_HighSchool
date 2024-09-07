@@ -34,10 +34,6 @@ export default function Login() {
           <div className='flex-col self-start hidden text-white lg:flex'>
             <p>ESP Logo</p>
             <h1 className='mb-3 text-5xl font-bold'>Chào mừng trở lại !</h1>
-            <p className='pr-3'>
-              Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for
-              previewing layouts and visual mockup
-            </p>
           </div>
         </div>
         <div className='z-10 flex self-center justify-center'>
