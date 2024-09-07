@@ -3,7 +3,7 @@ const path = {
   register: '/register',
   logout: '/logout',
   landing: '/',
-  dashboard: '/dashboard',
+  heathoveral: '/dashboard',
   messenger: '/dashboard/messenger',
   examsTest: '/dashboard/examsTest',
   booking: '/dashboard/Booking',
@@ -12,7 +12,7 @@ const path = {
   historyapoinment: '/dashboard/Booking/Historyapoinment',
   profile: '/dashboard/profile',
   info: '/dashboard/Booking/Information',
-  heathoveral: '/dasboard/Booking/heathoveral',
+  dashboard: '/dasboard/Booking/heathoveral',
   meeting: '/dashboard/Booking/meeting'
 }
 export default path

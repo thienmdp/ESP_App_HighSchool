@@ -61,40 +61,45 @@ function Dashboard() {
   const [users, setUsers] = useState([]);
   const [selectedUserData, setSelectedUserData] = useState(null);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [selectedUserName, setSelectedUserName] = useState(null);
   const [totalSleepData, setTotalSleepData] = useState([])
   const [heartrateData, setHeartRateData] = useState([])
   const [spo2Data, setSPO2Data] = useState([]);
   const [stepData, setStepData] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  // Fetch user IDs from appointments
-  // Fetch user IDs from appointments and then fetch user details from User collection
-  const handleUserClick = async (userId) => {
+
+  const handleUserClick = async (userId, userName) => {
     setSelectedUserId(userId);
-    const data = await fetchSelectedUserData(userId);
-    const datasleep = await fetchSelectedUserSleepData7Days(userId)
-    const dataheart = await fetchSelectedUserHeartRateData7Days(userId)
-    const dataSPO2 = await fetchSelectedUserSPO2Data7Days(userId);
-    const dataStep = await fetchSelectedUserStepData7Days(userId);
+    setSelectedUserName(userName);
+    await fetchUserData(userId, selectedDate);
+  };
+
+  const fetchUserData = async (userId, date) => {
+    const data = await fetchSelectedUserData(userId, date);
+    const datasleep = await fetchSelectedUserSleepData7Days(userId, date)
+    const dataheart = await fetchSelectedUserHeartRateData7Days(userId, date)
+    const dataSPO2 = await fetchSelectedUserSPO2Data7Days(userId, date);
+    const dataStep = await fetchSelectedUserStepData7Days(userId, date);
     setTotalSleepData(datasleep)
     setSelectedUserData(data);
     setHeartRateData(dataheart)
     setSPO2Data(dataSPO2);
     setStepData(dataStep);
   };
+
   useEffect(() => {
     const fetchUserIds = async () => {
       try {
         const appointmentQuery = query(
           collection(db, 'Appoinment'),
           where('doctorId', '==', userId),
-          orderBy('userId') // Order by userId
+          orderBy('userId')
         );
         const appointmentSnapshot = await getDocs(appointmentQuery);
 
         const fetchedUserIds = [];
         appointmentSnapshot.forEach((doc) => {
           const userId = doc.data().userId;
-          // Check if the userId is already in the array
           if (!fetchedUserIds.includes(userId)) {
             fetchedUserIds.push(userId);
           }
@@ -102,7 +107,6 @@ function Dashboard() {
 
         setusersId(fetchedUserIds);
 
-        // Fetch User details from User collection
         const userDetails = [];
         for (const id of fetchedUserIds) {
           const userDoc = await getDoc(doc(db, 'User', id));
@@ -118,33 +122,29 @@ function Dashboard() {
     };
 
     fetchUserIds();
-  }, [userId, selectedDate]);
+  }, [userId]);
+
   useEffect(() => {
-    if (usersId) {
+    if (usersId && usersId.length > 0) {
       const fetchDataForInitialUser = async () => {
-        const sleepData = await fetchSelectedUserSleepData7Days(usersId[0]);
-        const dataheart = await fetchSelectedUserHeartRateData7Days(usersId[0]);
-        const dataSPO2 = await fetchSelectedUserSPO2Data7Days(usersId[0]);
-        const dataStep = await fetchSelectedUserStepData7Days(usersId[0]);
-        setHeartRateData(dataheart);
-        setTotalSleepData(sleepData);
-        setSPO2Data(dataSPO2);
-        setStepData(dataStep);
-        fetchSelectedUserData(usersId[0]); // Fetch data for the first user in the array
+        await fetchUserData(usersId[0], selectedDate);
+        setSelectedUserId(usersId[0]);
+        setSelectedUserName(users[0]?.user);
       };
       fetchDataForInitialUser();
     }
-  }, [usersId]);
-  // Fetch selected user data from Realtime Database
+  }, [usersId, users]);
+
   const barChartData = totalSleepData?.map((item) => ({
     name: moment(item.date).format('MM-DD'),
     hour: item.minutes,
   })) || [];
-  const fetchSelectedUserSleepData7Days = async (selectedUserId) => {
+
+  const fetchSelectedUserSleepData7Days = async (selectedUserId, currentDate) => {
     try {
       const totalSleepMinutes = [];
       for (let i = 6; i >= 0; i--) {
-        const date = moment().subtract(i, 'days').format('YYYY-MM-DD');
+        const date = moment(currentDate).subtract(i, 'days').format('YYYY-MM-DD');
         const dataRef = ref(database, `${selectedUserId}/${date}`);
         onValue(dataRef, (snapshot) => {
           const data = snapshot.val();
@@ -162,16 +162,17 @@ function Dashboard() {
       return totalSleepMinutes;
     } catch (error) {
       console.error('Error fetching selected user sleep data:', error);
-      return []; // Return an empty array on error
+      return [];
     }
   };
-  const fetchSelectedUserHeartRateData7Days = async (selectedUserId) => {
+
+  const fetchSelectedUserHeartRateData7Days = async (selectedUserId, currentDate) => {
     try {
       const totalHeartRate = [];
       const promises = [];
 
       for (let i = 6; i >= 0; i--) {
-        const date = moment().subtract(i, 'days').format('YYYY-MM-DD');
+        const date = moment(currentDate).subtract(i, 'days').format('YYYY-MM-DD');
         const dataRef = ref(database, `${selectedUserId}/${date}`);
 
         promises.push(
@@ -197,16 +198,17 @@ function Dashboard() {
       return totalHeartRate;
     } catch (error) {
       console.error('Error fetching selected user heartRate data:', error);
-      return []; // Return an empty array on error
+      return [];
     }
   };
-  const fetchSelectedUserSPO2Data7Days = async (selectedUserId) => {
+
+  const fetchSelectedUserSPO2Data7Days = async (selectedUserId, currentDate) => {
     try {
       const totalSPO2 = [];
       const promises = [];
 
       for (let i = 6; i >= 0; i--) {
-        const date = moment().subtract(i, 'days').format('YYYY-MM-DD');
+        const date = moment(currentDate).subtract(i, 'days').format('YYYY-MM-DD');
         const dataRef = ref(database, `${selectedUserId}/${date}`);
 
         promises.push(
@@ -232,16 +234,17 @@ function Dashboard() {
       return totalSPO2;
     } catch (error) {
       console.error('Error fetching selected user SPO2 data:', error);
-      return []; // Return an empty array on error
+      return [];
     }
   };
-  const fetchSelectedUserStepData7Days = async (selectedUserId) => {
+
+  const fetchSelectedUserStepData7Days = async (selectedUserId, currentDate) => {
     try {
       const totalSteps = [];
       const promises = [];
 
       for (let i = 6; i >= 0; i--) {
-        const date = moment().subtract(i, 'days').format('YYYY-MM-DD');
+        const date = moment(currentDate).subtract(i, 'days').format('YYYY-MM-DD');
         const dataRef = ref(database, `${selectedUserId}/${date}`);
 
         promises.push(
@@ -266,40 +269,40 @@ function Dashboard() {
       return totalSteps;
     } catch (error) {
       console.error('Error fetching selected user step data:', error);
-      return []; // Return an empty array on error
+      return [];
     }
   };
-  const fetchSelectedUserData = async (selectedUserId) => {
-    try {
-      // Get the current date formatted as YYYY-MM-DD
-      const currentDate = moment(selectedDate).format('YYYY-MM-DD');
 
-      // Reference to the user's data for the current date
+  const fetchSelectedUserData = async (selectedUserId, date) => {
+    try {
+      const currentDate = moment(date).format('YYYY-MM-DD');
       const dataRef = ref(database, `${selectedUserId}/${currentDate}`);
 
-      // Listen for data updates
-      onValue(dataRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          setSelectedUserData(data);
-          console.log("Selected User Data for current day:", data);
-        } else {
-          console.log("No data available for the selected user on the current day.");
-        }
+      return new Promise((resolve) => {
+        onValue(dataRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+            console.log("Selected User Data for current day:", data);
+            resolve(data);
+          } else {
+            console.log("No data available for the selected user on the current day.");
+            resolve(null);
+          }
+        }, { onlyOnce: true });
       });
     } catch (error) {
       console.error('Error fetching selected user data:', error);
-    }
-  };
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    // Refetch data for the new date
-    if (selectedUserId) {
-      handleUserClick(selectedUserId);
+      return null;
     }
   };
 
-  // Sử dụng useMemo để tính toán dữ liệu biểu đồ chỉ khi selectedUserData.stages thay đổi
+  const handleDateChange = async (date) => {
+    setSelectedDate(date);
+    if (selectedUserId) {
+      await fetchUserData(selectedUserId, date);
+    }
+  };
+
   const sleepStageData = useMemo(() => {
     if (selectedUserData?.stages) {
       const stages = calculateSleepStages(selectedUserData.stages);
@@ -329,6 +332,12 @@ function Dashboard() {
             dateFormat="dd/MM/yyyy"
             className="p-3 border border-gray-300 rounded-lg shadow-sm"
           />
+          <div className="text-lg font-semibold text-gray-700">
+            Ngày đang chọn: {moment(selectedDate).format('DD/MM/YYYY')}
+          </div>
+          <div className="text-lg font-semibold text-gray-700">
+            Người dùng đang chọn: {selectedUserName || 'Chưa chọn'}
+          </div>
         </div>
         <div className='flex flex-col space-y-4'>
           {users.map((user) => (
@@ -337,7 +346,7 @@ function Dashboard() {
               <div className="flex flex-row space-x-6 items-center">
                 <p className='text-gray-600'>Số điện thoại: <span className='font-semibold'>{user.phonenumber}</span></p>
                 <p className='text-gray-600'>Email: <span className='font-semibold'>{user.email}</span></p>
-                <button onClick={() => handleUserClick(user.id)} className="font-semibold p-2 rounded-lg border border-green-300 bg-green-400 text-white hover:bg-green-500 transition duration-200">Theo dõi sức khoẻ</button>
+                <button onClick={() => handleUserClick(user.id, user.user)} className="font-semibold p-2 rounded-lg border border-green-300 bg-green-400 text-white hover:bg-green-500 transition duration-200">Theo dõi sức khoẻ</button>
               </div>
             </div>
           ))}
@@ -624,14 +633,14 @@ function Dashboard() {
               <div className='flex flex-col items-end'>
                 <div className='bg-green-300 h-11 font-semibold text-white rounded-2xl w-[300px] flex items-center justify-center relative'>
                   <div className='absolute left-0 top-0 bottom-0 bg-green-600 flex items-center justify-center text-white' style={{
-                    width: `${(selectedUserData?.stepData / 10000) * 100}%`,
+                    width: `${(selectedUserData?.stepData / 20000) * 100}%`,
                   }}>
                     <span className='z-20 pl-10'>{selectedUserData?.stepData}</span>
                   </div>
                 </div>
                 <div className='text-sm mt-1 flex justify-between font-semibold'>
                   <p className='z-10'>0</p>
-                  <p className='z-10 ml-[265px]'>10000</p>
+                  <p className='z-10 ml-[265px]'>20000</p>
                 </div>
               </div>
             </div>
