@@ -102,6 +102,18 @@ const Sidebar = () => {
           </Link>
         </li>)}
         <li className='list-item'>
+          <Link to={path.meeting} className='flex items-center justify-start w-full'>
+            <FaRegCalendarAlt className='mr-4 min-w-max' />
+            <span className='link-name'>Các lịch hẹn</span>
+          </Link>
+        </li>
+        <li className='list-item'>
+          <Link to={path.historyapoinment} className='flex items-center justify-start w-full'>
+            <FaRegCalendarAlt className='mr-4 min-w-max' />
+            <span className='link-name'>Lịch sử lịch hẹn</span>
+          </Link>
+        </li>
+        <li className='list-item'>
           <Link to={path.profile} className='flex items-center justify-start w-full'>
             <IoIosSettings className='mr-4 min-w-max' />
             <span className='link-name'>Cài đặt</span>
