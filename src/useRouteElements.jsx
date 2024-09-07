@@ -52,7 +52,7 @@ function RejectedRoute() {
     return <div>Loading...</div>;
   }
 
-  return !user ? <Outlet /> : <Navigate to={path.dashboard} />;
+  return !user ? <Outlet /> : <Navigate to={path.heathoveral} />;
 }
 export default function useRouteElements() {
   return useRoutes([
@@ -91,8 +91,15 @@ export default function useRouteElements() {
       element: <ProtectedRoute />,
       children: [
         {
+          path: path.heathoveral,
+          element: (
+            <DashboardLayout>
+              <Heathoveral />
+            </DashboardLayout>
+          )
+        },
+        {
           path: path.dashboard,
-          index: true,
           element: (
             <DashboardLayout>
               <Dashboard />
@@ -115,7 +122,6 @@ export default function useRouteElements() {
             </DashboardLayout>
           )
         },
-
         {
           path: path.historyapoinment,
           element: (
@@ -124,7 +130,6 @@ export default function useRouteElements() {
             </DashboardLayout>
           )
         },
-
         {
           path: path.profile,
           element: (
@@ -133,7 +138,6 @@ export default function useRouteElements() {
             </DashboardLayout>
           )
         },
-
         {
           path: path.makeapoinment,
           element: (
@@ -158,25 +162,6 @@ export default function useRouteElements() {
             </DashboardLayout>
           )
         },
-
-        {
-          path: path.heathoveral,
-          element: (
-            <DashboardLayout>
-              <Heathoveral />
-            </DashboardLayout>
-          )
-        },
-
-
-
-
-
-
-
-
-
-
         {
           path: path.messenger,
           element: (
